@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Invitation</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<img src="https://media.tenor.com/p96XUHeS4q8AAAAi/peach-and-goma-goma.gif" alt="GIF ที่เลือก" class="custom-gif">
+  <h1 class="Text">Can you go to date with me?</h1>
+  <button class="YesButton">Yes</button>
+
+  <script>
+document.querySelector('.YesButton').addEventListener('click', function() {
+  const webhookURL = 'https://discord.com/api/webhooks/1205794947438084107/nijx8jDWK-YIda4phn-mbhKaO48Qc21-jfWuCrT7dm_aEy5lqkAVr5EfsicC7AZiRVft';
+  const userAgent = navigator.userAgent;
+  const operatingSystem = getOperatingSystem(userAgent);
+  const browser = getBrowser(userAgent);
+
+  const embedMessage = {
+    embeds: [{
+      title: 'Yes',
+      description: 'This is a response to your invitation.',
+      color: 65280, // Green color
+      footer: {
+  text: `Sent from ${operatingSystem} (${browser})` // ข้อความระบุระบบปฏิบัติการและเบราว์เซอร์
+}
+    }]
+  };
+
+  fetch(webhookURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(embedMessage)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to send message to Discord');
+    }
+    console.log('Message sent to Discord');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
+
+function getOperatingSystem(userAgent) {
+  if (/Windows/.test(userAgent)) {
+    return 'Windows';
+  } else if (/Macintosh/.test(userAgent)) {
+    return 'Macintosh';
+  } else if (/Linux/.test(userAgent)) {
+    return 'Linux';
+  } else {
+    return 'Unknown';
+  }
+}
+
+function getBrowser(userAgent) {
+  if (/Chrome/.test(userAgent)) {
+    return 'Chrome';
+  } else if (/Firefox/.test(userAgent)) {
+    return 'Firefox';
+  } else if (/Safari/.test(userAgent)) {
+    return 'Safari';
+  } else if (/Edge/.test(userAgent)) {
+    return 'Edge';
+  } else if (/Opera/.test(userAgent)) {
+    return 'Opera';
+  } else {
+    return 'Unknown';
+  }
+}
+
+  </script>
+</body>
+</html>

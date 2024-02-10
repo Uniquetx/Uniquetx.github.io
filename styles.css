@@ -1,0 +1,43 @@
+.custom-gif {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -50px; /* ระบุค่าความสูงของ GIF ที่ต้องการ */
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(-50%);
+  }
+  
+  .Text {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed; /* กำหนดให้มีตำแหน่งคงที่ */
+    top: 480px; /* ขยับไปที่ด้านบนของหน้าเว็บ */
+    left: 50%; /* ขยับไปที่ด้านขวาของหน้าเว็บ */
+    transform: translateX(-50%); /* ขยับกลับไปที่กลาง */
+  }
+  
+  .YesButton {
+    display: block;
+    position: fixed;
+    bottom: 27%; /* ขยับไปที่กลางของหน้าเว็บในแนวตั้ง */
+    left: 50%; /* ขยับไปที่กลางของหน้าเว็บในแนวนอน */
+    transform: translate(-50%, 50%);
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  
+      
+  
+  
