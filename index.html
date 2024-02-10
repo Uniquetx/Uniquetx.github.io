@@ -8,45 +8,10 @@
 </head>
 <body>
 <img src="https://media.tenor.com/p96XUHeS4q8AAAAi/peach-and-goma-goma.gif" alt="GIF ที่เลือก" class="custom-gif">
-  <h1 class="Text">Can you go to date with me?</h1>
-  <button class="YesButton">Yes</button>
+<h1 class="Text">Can you go to date with me?</h1>
+<button class="YesButton">Yes</button>
 
-  <script>
-document.querySelector('.YesButton').addEventListener('click', function() {
-  const webhookURL = 'https://discord.com/api/webhooks/1205794947438084107/nijx8jDWK-YIda4phn-mbhKaO48Qc21-jfWuCrT7dm_aEy5lqkAVr5EfsicC7AZiRVft';
-  const userAgent = navigator.userAgent;
-  const operatingSystem = getOperatingSystem(userAgent);
-  const browser = getBrowser(userAgent);
-
-  const embedMessage = {
-    embeds: [{
-      title: 'Yes',
-      description: 'This is a response to your invitation.',
-      color: 65280, // Green color
-      footer: {
-  text: `Sent from ${operatingSystem} (${browser})` // ข้อความระบุระบบปฏิบัติการและเบราว์เซอร์
-}
-    }]
-  };
-
-  fetch(webhookURL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(embedMessage)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to send message to Discord');
-    }
-    console.log('Message sent to Discord');
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-});
-
+<script>
 function getOperatingSystem(userAgent) {
   if (/Windows/.test(userAgent)) {
     return 'Windows';
@@ -75,6 +40,50 @@ function getBrowser(userAgent) {
   }
 }
 
-  </script>
+function getiPhoneModel(userAgent) {
+  const modelRegex = /\(([^)]+)\)/;
+  const match = modelRegex.exec(userAgent);
+  if (match) {
+    return match[1]; // คืนค่าข้อมูลที่อยู่ในวงเล็บ (รุ่นโทรศัพท์)
+  }
+  return "Unknown";
+}
+
+document.querySelector('.YesButton').addEventListener('click', function() {
+  const webhookURL = 'https://discord.com/api/webhooks/1205794947438084107/nijx8jDWK-YIda4phn-mbhKaO48Qc21-jfWuCrT7dm_aEy5lqkAVr5EfsicC7AZiRVft';
+  const userAgent = navigator.userAgent;
+  const operatingSystem = getOperatingSystem(userAgent);
+  const browser = getBrowser(userAgent);
+  const iPhoneModel = getiPhoneModel(userAgent);
+
+  const embedMessage = {
+    embeds: [{
+      title: 'Yes',
+      description: 'This is a response to your babe.',
+      color: 65280, // Green color
+      footer: {
+        text: `Sent from ${operatingSystem} (${browser}), iPhone Model: ${iPhoneModel}` // ข้อความระบุระบบปฏิบัติการและเบราว์เซอร์ รวมถึงรุ่นของ iPhone
+      }
+    }]
+  };
+
+  fetch(webhookURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(embedMessage)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to send message to Discord');
+    }
+    console.log('Message sent to Discord');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
+</script>
 </body>
 </html>
