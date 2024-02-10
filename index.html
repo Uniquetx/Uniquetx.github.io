@@ -41,12 +41,18 @@ function getBrowser(userAgent) {
 }
 
 function getiPhoneModel(userAgent) {
-  const modelRegex = /\(([^)]+)\)/;
-  const match = modelRegex.exec(userAgent);
-  if (match) {
-    return match[1]; // คืนค่าข้อมูลที่อยู่ในวงเล็บ (รุ่นโทรศัพท์)
-  }
-  return "Unknown";
+    const models = ["iPhone 11", "iPhone X", "iPhone XR", "iPhone XS", "iPhone XS Max", "iPhone 8", "iPhone 8 Plus", "iPhone 7", "iPhone 7 Plus", "iPhone SE", "iPhone 6s", "iPhone 6s Plus", "iPhone 6", "iPhone 6 Plus", "iPhone 5s", "iPhone 5c", "iPhone 5", "iPhone 4s", "iPhone 4"];
+    const match = userAgent.match(/iPhone(?:\s+\w+)?\s*([0-9]+)[,_]([0-9]+)?\s*([\w\s]+)/);
+
+    if (match) {
+        const modelNumber = match[1];
+        const modelVariant = match[2] || '';
+        const modelName = match[3];
+        const fullModelName = `iPhone ${modelNumber}${modelVariant} ${modelName}`;
+        return models.includes(fullModelName) ? fullModelName : 'Unknown';
+    }
+
+    return 'Unknown';
 }
 
 document.querySelector('.YesButton').addEventListener('click', function() {
